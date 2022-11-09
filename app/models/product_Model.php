@@ -8,17 +8,30 @@ class ProductModel {
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_products;charset=utf8', 'root', '');
     }
 
-    public function getAllProducts ($attribute = null, $order = null) {
-        
-        if ($attribute != null && $order != null) {
-            $query = $this->db->prepare("select * FROM products ORDER BY $attribute $order");
-            $query->execute();
-        }
-        
-        else {
+    public function getAllProducts () {
+
         $query = $this->db->prepare("SELECT * FROM products");
         $query->execute();
-        }
+
+        $products = $query->fetchAll(PDO::FETCH_OBJ); 
+        
+        return $products;
+    }
+
+    public function getAllProductsOrderBy ($attribute, $order) {
+
+        $query = $this->db->prepare("select * FROM products ORDER BY $attribute $order");
+        $query->execute();
+
+        $products = $query->fetchAll(PDO::FETCH_OBJ); 
+        
+        return $products;
+    }
+
+    public function getAllProductsFilterBy ($filter, $value) {
+
+        $query = $this->db->prepare("select * FROM products WHERE $filter = '$value' ");
+        $query->execute();
 
         $products = $query->fetchAll(PDO::FETCH_OBJ); 
         

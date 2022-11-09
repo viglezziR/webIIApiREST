@@ -28,6 +28,8 @@ or /blogs?p=1&l=10
 
 SORTING
 Add query params to GET requests:
+/api/tareas?sort=prioridad&order=asc
+
 
 /products?orderBy="parameter"&order=desc
 

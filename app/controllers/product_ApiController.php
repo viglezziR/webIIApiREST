@@ -20,14 +20,14 @@ class ProductApiController {
 
     public function getProducts($params = null) {
 
-        /* $parametros = parse_str($_GET['orderBy']&, $params); */
-/*         var_dump($_GET['orderBy']);
-        var_dump($_GET['order']); */
-
-
         if (isset($_GET['orderBy']))
             $attribute = $_GET['orderBy'];
         
+        if (isset($_GET['filterBy'])){
+            $filter = $_GET['filterBy'];
+            $value = $_GET['value'];
+        }
+
         if (isset($_GET['order']))
             $order = $_GET['order'];
         else
@@ -35,7 +35,12 @@ class ProductApiController {
         
         
         if (isset($attribute) && isset($order)) {
-            $products = $this->model->getAllProducts($attribute, $order);
+            $products = $this->model->getAllProductsOrderBy($attribute, $order);
+            $this->view->response($products);
+        }
+
+        else if (isset($filter) && isset($value)) {
+            $products = $this->model->getAllProductsFilterBy($filter, $value);
             $this->view->response($products);
         }
         
