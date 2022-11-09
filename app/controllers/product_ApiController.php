@@ -19,8 +19,31 @@ class ProductApiController {
     }
 
     public function getProducts($params = null) {
-        $products = $this->model->getAllProducts();
-        $this->view->response($products);
+
+        /* $parametros = parse_str($_GET['orderBy']&, $params); */
+/*         var_dump($_GET['orderBy']);
+        var_dump($_GET['order']); */
+
+
+        if (isset($_GET['orderBy']))
+            $attribute = $_GET['orderBy'];
+        
+        if (isset($_GET['order']))
+            $order = $_GET['order'];
+        else
+            $order="ASC";
+        
+        
+        if (isset($attribute) && isset($order)) {
+            $products = $this->model->getAllProducts($attribute, $order);
+            $this->view->response($products);
+        }
+        
+        else {
+            $products = $this->model->getAllProducts();
+            $this->view->response($products);
+        }
+
     }
 
     public function getProduct($params = null) {

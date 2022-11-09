@@ -8,9 +8,17 @@ class ProductModel {
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_products;charset=utf8', 'root', '');
     }
 
-    public function getAllProducts () {
+    public function getAllProducts ($attribute = null, $order = null) {
+        
+        if ($attribute != null && $order != null) {
+            $query = $this->db->prepare("select * FROM products ORDER BY $attribute $order");
+            $query->execute();
+        }
+        
+        else {
         $query = $this->db->prepare("SELECT * FROM products");
         $query->execute();
+        }
 
         $products = $query->fetchAll(PDO::FETCH_OBJ); 
         
