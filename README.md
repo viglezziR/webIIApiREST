@@ -42,3 +42,6 @@ Add query params to GET request:
 /blogs?search=blog1 - search by all fields for string blog1
 /blogs?filter=blog1 - search by all fields for string blog1
 /blogs?title=blog1 - search by title field for string blog1
+
+
+?page=1&limit=10

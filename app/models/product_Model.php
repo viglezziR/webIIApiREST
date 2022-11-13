@@ -8,30 +8,27 @@ class ProductModel {
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_products;charset=utf8', 'root', '');
     }
 
-    public function getAllProducts () {
+    public function getAllProducts ($filter = null, $value = null, $attribute = null, $order = null, $limit = null, $offset = null) {
+        $sql = "SELECT * FROM products ";
+        $ext = [];
 
-        $query = $this->db->prepare("SELECT * FROM products");
-        $query->execute();
+        if ($filter != null && $value != null){
+            $sql .=" WHERE $filter = ? ";
+            array_push($ext, $value);
+        }
 
-        $products = $query->fetchAll(PDO::FETCH_OBJ); 
+        if ($attribute != null && $order != null){
+            $sql .=" ORDER BY ? ? ";
+            array_push($ext, $attribute, $order);
+        }
+
+        if ($limit != null && ($offset != null || $offset == 0)) {
+            $sql .=" LIMIT $limit OFFSET $offset ";
+        }
         
-        return $products;
-    }
-
-    public function getAllProductsOrderBy ($attribute, $order) {
-
-        $query = $this->db->prepare("select * FROM products ORDER BY $attribute $order");
-        $query->execute();
-
-        $products = $query->fetchAll(PDO::FETCH_OBJ); 
-        
-        return $products;
-    }
-
-    public function getAllProductsFilterBy ($filter, $value) {
-
-        $query = $this->db->prepare("select * FROM products WHERE $filter = '$value' ");
-        $query->execute();
+        var_dump($ext);
+        $query = $this->db->prepare($sql);
+        $query->execute($ext);
 
         $products = $query->fetchAll(PDO::FETCH_OBJ); 
         
