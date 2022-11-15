@@ -18,8 +18,8 @@ class ProductModel {
         }
 
         if ($attribute != null && $order != null){
-            $sql .=" ORDER BY ? ? ";
-            array_push($ext, $attribute, $order);
+            $sql .=" ORDER BY $attribute, $order ";
+            //array_push($ext, $attribute, $order);
         }
 
         if ($limit != null && ($offset != null || $offset == 0)) {
