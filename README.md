@@ -33,7 +33,7 @@ ACLARACION: La paginacion, los filtros y el orden no son excluyentes.
 
 ```
 
-Metodo: GET, Url: http://localhost/tucarpetalocal/apiRest/api/products/:ID
+## Metodo: GET, Url: http://localhost/tucarpetalocal/apiRest/api/products/:ID
 - Trae de la base de datos solamente el producto de la :ID asignada.
 
 
