@@ -6,22 +6,23 @@ Una API REST sencilla para manejar un CRUD de productos.
 
 ## Pueba con postman
 
-```
+
 ## Metodo: GET, Url: http://localhost/tucarpetalocal/apiRest/api/products
 - Trae todos los productos de la base de datos ordenados por defecto de forma ascendente por id de producto.
+
 ```
-### PAGINACION
+PAGINACION
 Se agregan parametros query para solicitar todos los productos paginados:
 
 /products?page=1&&limit=10
 
-### FILTRO
+FILTRO
 Se agregan parametros query para solicitar todos los productos filtrados por un parametro especifico:
 
 /products?filterBy=brand&&value=VitalCan
 /products?filterBy=price&&value=5000
 
-### ORDEN
+ORDEN
 Se agregan parametros query para solicitar todos los productos ordenados por un parametro especifico. Por defecto si no se especifica el tipo de orden, se ordenara en forma ascendete.
 
 /products?orderBy=brand
@@ -31,14 +32,16 @@ Se agregan parametros query para solicitar todos los productos ordenados por un 
 ACLARACION: La paginacion, los filtros y el orden no son excluyentes.
 
 ```
-## Metodo: GET, Url: http://localhost/tucarpetalocal/apiRest/api/products/:ID
+
+Metodo: GET, Url: http://localhost/tucarpetalocal/apiRest/api/products/:ID
 - Trae de la base de datos solamente el producto de la :ID asignada.
-```
 
 
-```
+
+
 ## Metodo: POST, Url: http://localhost/tucarpetalocal/apiRest/api/products
 - Genera un nuevo elemento en la base de datos, para ello utilizar la siguiente plantilla en el body.
+
 ```
 {
     "animal": "Perro",
@@ -48,12 +51,13 @@ ACLARACION: La paginacion, los filtros y el orden no son excluyentes.
     "productWeight": "20 kg",
     "animalAge": "Adulto",
     "animalSize": "Mordida Chica",
-    "image":
+    "image": "images/634b4a403673f.jpg"
 }
-
 ```
+
 ## Metodo: PUT, Url: http://localhost/tucarpetalocal/apiRest/api/products/:ID
 - Actualiza los campos de un elemento en la base de datos, dado un :ID en especifico. Se debe utilizar la siguiente plantilla.
+
 ```
 {
     "animal": "Perro",
@@ -68,4 +72,3 @@ ACLARACION: La paginacion, los filtros y el orden no son excluyentes.
 ```
 ## Metodo: DELETE, Url: http://localhost/tucarpetalocal/apiRest/api/products/:ID
 - Se elemina un elemento de la base de datos dado un :ID en especifico.
-```
